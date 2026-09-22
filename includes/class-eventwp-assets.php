@@ -62,16 +62,16 @@ class EventWP_Assets {
 			)
 		);
 		wp_register_script(
-			'eventwp-app',
-			EVENTWP_URL . '/assets/js/app.js',
+			'eventwp-vendor',
+			EVENTWP_URL . '/assets/js/vendor.js',
 			array(),
 			EVENTWP_VERSION,
 			true
 		);
 		wp_register_script(
-			'eventwp-vendor',
-			EVENTWP_URL . '/assets/js/vendor.js',
-			array(),
+			'eventwp-app',
+			EVENTWP_URL . '/assets/js/app.js',
+			array( 'eventwp-vendor' ),
 			EVENTWP_VERSION,
 			true
 		);
@@ -79,12 +79,12 @@ class EventWP_Assets {
 			'eventwp-app',
 			'EVENTWP',
 			array(
-			'root'       => esc_url_raw( rest_url( EVENTWP_REST_NAMESPACE . '/' ) ),
-			'nonce'      => wp_create_nonce( 'wp_rest' ),
-			'siteUrl'    => esc_url_raw( home_url() ),
-			'wpAdmin'    => esc_url_raw( admin_url( 'admin.php?page=eventwp' ) ),
-			'imageFallback' => EVENTWP_URL . '/assets/img/og-default.svg',
-				'i18n'       => array(
+				'root'          => esc_url_raw( rest_url( EVENTWP_REST_NAMESPACE . '/' ) ),
+				'nonce'         => wp_create_nonce( 'wp_rest' ),
+				'siteUrl'       => esc_url_raw( home_url() ),
+				'wpAdmin'       => esc_url_raw( admin_url( 'admin.php?page=eventwp' ) ),
+				'imageFallback' => EVENTWP_URL . '/assets/img/og-default.svg',
+				'i18n'          => array(
 					'loading'  => __( 'Memuat…', 'eventwp' ),
 					'login'    => __( 'Masuk', 'eventwp' ),
 					'register' => __( 'Daftar', 'eventwp' ),

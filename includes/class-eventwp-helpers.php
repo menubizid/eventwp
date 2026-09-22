@@ -223,9 +223,12 @@ class EventWP_Helpers {
 	 * @return void
 	 */
 	public function enqueue_app_assets( $blocks_only = false ) {
+		if ( ! wp_style_is( 'eventwp-fontawesome', 'registered' ) ) {
+			wp_register_style( 'eventwp-fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css', array(), '6.5.2' );
+		}
 		wp_enqueue_style( 'eventwp-frontend' );
 		wp_enqueue_style( 'eventwp-app' );
-		wp_enqueue_script( 'eventwp-frontend' );
+		wp_enqueue_style( 'eventwp-fontawesome' );
 		if ( ! $blocks_only ) {
 			wp_enqueue_script( 'eventwp-vendor' );
 			wp_enqueue_script( 'eventwp-app' );
